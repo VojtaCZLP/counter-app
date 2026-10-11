@@ -56,4 +56,12 @@ describe('Tab1Page', () => {
     expect(component.count).toBe(0);
   });
 
+  it('should reset both count and counterName', () => {
+    component.count = 10;
+    component.counterName = 'Test počítadlo';
+    component.resetAll();
+    expect(component.count).toBe(0);
+    expect(component.counterName).toBe('');
+  });
+
 });
