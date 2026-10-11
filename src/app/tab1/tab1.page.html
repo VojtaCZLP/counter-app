@@ -20,40 +20,20 @@
         placeholder="Například návštěvníci"
         [(ngModel)]="counterName"
       ></ion-input>
-      <ion-input
-        label="Velikost kroku"
-        label-placement="stacked"
-        fill="outline"
-        placeholder="Například 1, 2, 5, 10..."
-        type="number"
-        min="1"
-        [(ngModel)]="step"
-      ></ion-input>
-      <p class="counter-value" [class.positive]="count > 0">{{ count }}</p>
+
+      <p class="counter-value">{{ count }}</p>
 
       <div class="counter-actions">
         <ion-button
           color="danger"
           [disabled]="count === 0"
-          (click)="decrementByFive()"
-        >
-          −5
-        </ion-button>
-
-        <ion-button
-          color="danger"
-          [disabled]="count === 0"
           (click)="decrement()"
         >
-          −{{ step }}
+          −1
         </ion-button>
 
         <ion-button color="primary" (click)="increment()">
-          +{{ step }}
-        </ion-button>
-
-        <ion-button color="primary" (click)="incrementByFive()">
-          +5
+          +1
         </ion-button>
 
         <ion-button
@@ -63,14 +43,6 @@
           (click)="reset()"
         >
           Reset
-        </ion-button>
-
-        <ion-button
-          color="health"
-          fill="outline"
-          (click)="resetAll()"
-        >
-          Reset vše
         </ion-button>
       </div>
     </ion-card-content>

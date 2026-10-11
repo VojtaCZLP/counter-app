@@ -43,25 +43,4 @@ describe('Tab1Page', () => {
     expect(component.count).toBe(0);
     expect(value.textContent?.trim()).toBe('0');
   });
-
-  it('should increment by 5', () => {
-    component.count = 2;
-    component.incrementByFive();
-    expect(component.count).toBe(7);
-  });
-
-  it('should decrement by 5 but never go below zero', () => {
-    component.count = 3;
-    component.decrementByFive();
-    expect(component.count).toBe(0);
-  });
-
-  it('should reset both count and counterName', () => {
-    component.count = 10;
-    component.counterName = 'Test počítadlo';
-    component.resetAll();
-    expect(component.count).toBe(0);
-    expect(component.counterName).toBe('');
-  });
-
 });

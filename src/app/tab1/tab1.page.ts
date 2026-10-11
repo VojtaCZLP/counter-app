@@ -34,40 +34,18 @@ import {
 export class Tab1Page {
   counterName = '';
   count = 0;
-  step = 1;
 
   increment(): void {
-    const s = Number(this.step) || 1;
-    this.count += s;
+    this.count++;
   }
 
   decrement(): void {
-    const s = Number(this.step) || 1;
-    if (this.count >= s) {
-      this.count -= s;
-    } else {
-      this.count = 0;
-    }
-  }
-
-  incrementByFive(): void {
-  this.count += 5;
-  }
-
-  decrementByFive(): void {
-    if (this.count >= 5) {
-      this.count -= 5;
-    } else {
-      this.count = 0;
+    if (this.count > 0) {
+      this.count--;
     }
   }
 
   reset(): void {
     this.count = 0;
-  }
-
-  resetAll(): void {
-    this.count = 0;
-    this.counterName = '';
   }
 }
