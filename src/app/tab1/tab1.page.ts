@@ -34,14 +34,19 @@ import {
 export class Tab1Page {
   counterName = '';
   count = 0;
+  step = 1;
 
   increment(): void {
-    this.count++;
+    const s = Number(this.step) || 1;
+    this.count += s;
   }
 
   decrement(): void {
-    if (this.count > 0) {
-      this.count--;
+    const s = Number(this.step) || 1;
+    if (this.count >= s) {
+      this.count -= s;
+    } else {
+      this.count = 0;
     }
   }
 
