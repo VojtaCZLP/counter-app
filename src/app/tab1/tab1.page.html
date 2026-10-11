@@ -29,8 +29,7 @@
         min="1"
         [(ngModel)]="step"
       ></ion-input>
-
-      <p class="counter-value">{{ count }}</p>
+      <p class="counter-value" [class.positive]="count > 0">{{ count }}</p>
 
       <div class="counter-actions">
         <ion-button
