@@ -45,6 +45,18 @@ export class Tab1Page {
     }
   }
 
+  incrementByFive(): void {
+  this.count += 5;
+  }
+
+  decrementByFive(): void {
+    if (this.count >= 5) {
+      this.count -= 5;
+    } else {
+      this.count = 0;
+    }
+  }
+
   reset(): void {
     this.count = 0;
   }

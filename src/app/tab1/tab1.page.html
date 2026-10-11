@@ -27,6 +27,14 @@
         <ion-button
           color="danger"
           [disabled]="count === 0"
+          (click)="decrementByFive()"
+        >
+          −5
+        </ion-button>
+
+        <ion-button
+          color="danger"
+          [disabled]="count === 0"
           (click)="decrement()"
         >
           −1
@@ -34,6 +42,10 @@
 
         <ion-button color="primary" (click)="increment()">
           +1
+        </ion-button>
+
+        <ion-button color="primary" (click)="incrementByFive()">
+          +5
         </ion-button>
 
         <ion-button
