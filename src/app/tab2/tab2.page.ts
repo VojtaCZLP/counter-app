@@ -47,6 +47,18 @@ export class Tab2Page implements OnInit {
   readonly alertController = inject(AlertController);
   readonly toastController = inject(ToastController);
 
+  readonly minMax = computed(() => {
+    const counters = this.counterService.counters();
+    if (counters.length === 0) {
+      return null;
+    }
+    const values = counters.map((c) => c.value);
+    return {
+      min: Math.min(...values),
+      max: Math.max(...values),
+    };
+  });
+
   readonly totalSum = computed(() =>
     this.counterService.counters().reduce((acc, c) => acc + c.value, 0),
   );

@@ -23,6 +23,9 @@
       <div>
         <p>Počet záznamů: {{ counterService.counters().length }}</p>
         <p><strong>Celkový součet: {{ totalSum() }}</strong></p>
+        @if (minMax(); as stats) {
+          <p>Minimum: {{ stats.min }} | Maximum: {{ stats.max }}</p>
+        }
       </div>
 
       <ion-select
