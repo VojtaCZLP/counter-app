@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import {
   IonButton,
@@ -34,6 +34,10 @@ import { CounterService } from '../services/counter.service';
 })
 export class Tab2Page implements OnInit {
   readonly counterService = inject(CounterService);
+
+  readonly totalSum = computed(() =>
+    this.counterService.counters().reduce((acc, c) => acc + c.value, 0),
+  );
 
   async ngOnInit(): Promise<void> {
     await this.counterService.initialize();
