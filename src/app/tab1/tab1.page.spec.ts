@@ -3,12 +3,13 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Tab1Page } from './tab1.page';
 import { CounterService } from '../services/counter.service';
 import { SavedCounter } from '../models/saved-counter';
+import { ToastController } from '@ionic/angular';
 
 describe('Tab1Page', () => {
   let component: Tab1Page;
   let fixture: ComponentFixture<Tab1Page>;
   let counterServiceMock: { add: ReturnType<typeof vi.fn> };
-
+  let toastControllerMock: { create: ReturnType<typeof vi.fn> };
   const sampleCounter: SavedCounter = {
     id: 'test-1',
     name: 'Návštěvníci',
@@ -20,11 +21,17 @@ describe('Tab1Page', () => {
     counterServiceMock = {
       add: vi.fn().mockResolvedValue(undefined),
     };
+    toastControllerMock = {
+      create: vi.fn().mockResolvedValue({
+        present: vi.fn().mockResolvedValue(undefined),
+      }),
+    };
 
     await TestBed.configureTestingModule({
       imports: [Tab1Page],
       providers: [
         { provide: CounterService, useValue: counterServiceMock },
+        { provide: ToastController, useValue: toastControllerMock },
       ],
     }).compileComponents();
 

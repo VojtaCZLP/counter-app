@@ -13,6 +13,7 @@ import {
   IonTitle,
   IonToolbar,
   IonSelect,
+  ToastController,
   IonSelectOption,
   IonSearchbar,
 } from '@ionic/angular';
@@ -44,6 +45,7 @@ export type SortOption = 'newest' | 'name' | 'value-asc' | 'value-desc';
 export class Tab2Page implements OnInit {
   readonly counterService = inject(CounterService);
   readonly alertController = inject(AlertController);
+  readonly toastController = inject(ToastController);
 
   readonly totalSum = computed(() =>
     this.counterService.counters().reduce((acc, c) => acc + c.value, 0),
@@ -91,6 +93,13 @@ export class Tab2Page implements OnInit {
 
   async remove(id: string): Promise<void> {
     await this.counterService.remove(id);
+
+    const toast = await this.toastController.create({
+      message: 'Záznam byl odstraněn.',
+      duration: 2000,
+      position: 'bottom',
+    });
+    await toast.present();
   }
 
   async clear(): Promise<void> {
@@ -107,6 +116,13 @@ export class Tab2Page implements OnInit {
           role: 'destructive',
           handler: async () => {
             await this.counterService.clear();
+
+            const toast = await this.toastController.create({
+              message: 'Historie byla kompletně vymazána.',
+              duration: 2000,
+              position: 'bottom',
+            });
+            await toast.present();
           },
         },
       ],

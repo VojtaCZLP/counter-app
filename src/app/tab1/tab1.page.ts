@@ -7,6 +7,7 @@ import {
   IonList,
   IonListHeader,
   IonNote,
+  ToastController,
   IonTitle,
   IonToolbar,
 } from '@ionic/angular';
@@ -28,8 +29,15 @@ import { CounterService } from '../services/counter.service';
 })
 export class Tab1Page {
   private readonly counterService = inject(CounterService);
+  private readonly toastController = inject(ToastController);
 
   async onSaved(counter: SavedCounter): Promise<void> {
     await this.counterService.add(counter);
+    const toast = await this.toastController.create({
+      message: 'Počítadlo uloženo.',
+      duration: 2000,
+      color: 'success',
+    });
+    await toast.present();
   }
 }
