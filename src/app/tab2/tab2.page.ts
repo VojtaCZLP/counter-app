@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, computed, signal } from '@angular/core'; // === BONUS 1: computed | BONUS 2 & 3: signal ===
 import { DatePipe } from '@angular/common';
 import {
+  AlertController,
   IonButton,
   IonContent,
   IonHeader,
@@ -42,6 +43,7 @@ export type SortOption = 'newest' | 'name' | 'value-asc' | 'value-desc';
 })
 export class Tab2Page implements OnInit {
   readonly counterService = inject(CounterService);
+  readonly alertController = inject(AlertController);
 
   readonly totalSum = computed(() =>
     this.counterService.counters().reduce((acc, c) => acc + c.value, 0),
@@ -92,6 +94,24 @@ export class Tab2Page implements OnInit {
   }
 
   async clear(): Promise<void> {
-    await this.counterService.clear();
+    const alert = await this.alertController.create({
+      header: 'Vymazat historii',
+      message: 'Opravdu si přejete smazat všechna uložená počítadla? Tato akce je nevratná.',
+      buttons: [
+        {
+          text: 'Zrušit',
+          role: 'cancel',
+        },
+        {
+          text: 'Vymazat',
+          role: 'destructive',
+          handler: async () => {
+            await this.counterService.clear();
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 }
